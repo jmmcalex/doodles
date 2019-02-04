@@ -1,0 +1,29 @@
+/**
+ * Action Overview
+ * 
+ * Components communicate with the store via 'thunk' action creators.
+ * The store consists of a collection of reducers that know how to alter 
+ * the state given actions. We register our 'thunk' action creators with
+ * components by including them in the components mapDispatchToProps. 
+ * By registering our action creators with the components, the store will 
+ * know to call the action creators like functions and not treat them like 
+ * pure actions
+ * 
+ * Actions will fall under 3 categories
+ * 1) An action informing the reducers that a request has begun.
+ *    The reducers may handle this by toggling an 'isFetching' flag
+ *    within the state. This way the UI knows to show a spinner or loading bar
+ * 2) An action informing reducers that the request was successful.
+ *    Reducers may handle this by merging the new data into the state they 
+ *    manage and resetting the 'isFetching' flag. The UI would hide spinners
+ *    and load bars and then display the fetched data
+ * 3) An action informing reducers that the request has failed.
+ *     Reducers may reset the 'isFetching' flag to false and set UI
+ *     to display hte error
+ * 
+ * 
+ * To handle above 3 categories it's useful to define 3 action types:
+ * 1) { type: 'FETCH_POSTS' }
+ * 2) { type: 'FETCH_POSTS_SUCCESS', response: {...} }
+ * 3) { type: 'FETCH_POSTS_ERROR', error: 'oops' }
+ */
