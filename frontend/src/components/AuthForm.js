@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Button, FormGroup, FormControl } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom';
 import { signup, login } from '../actions/account';
 import fetchStates from '../reducers/fetchStates';
 
@@ -48,6 +49,12 @@ class AuthForm extends Component {
     }
 
     render() { 
+        if(this.props.account.loggedIn) {
+            return(
+                <Redirect push to={{ pathname: `/` }}/>
+            )
+        }
+
         return(
             <Fragment>
                 <h1>AuthForm</h1>
@@ -74,8 +81,6 @@ class AuthForm extends Component {
                 </div>
                 <br />
                 { this.Error }
-                {/* <Signin /> */}
-                {/* <Album /> */}
             </Fragment>
         )
     }

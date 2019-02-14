@@ -5,44 +5,33 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { Router, Switch, Route, Redirect } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
+// import 'bootstrap/dist/css/bootstrap.css';
+
+
 import rootReducer from './reducers';
 import { fetchAuthenticated } from './actions/account';
-// import { loadState, saveState } from './localStorage';
-// import throttle from 'lodash.throttle';
-import Doodle from './components/Doodle';
-import DoodleList from './components/DoodleList';
+import Startup from './components/Startup';
+import Layout from './components/Layout';
+import Gallery from './components/Gallery/Gallery';
 import Root from './components/Root';
+import Home from './components/Home';
 import DoodleForm from './components/DoodleForm';
-import Navbar from './components/Navbar';
-import Container from './components/Container';
-
+import Appbar from './components/Header/Appbar';
+import Comic from './components/Comic/Comic';
+import AuthForm from './components/AuthForm';
 /**
  * persistedState will be the Redux-Store that is loaded from the client browsers'
  * localStorage. If nothing is there, then the Redux-Store is simply built by
  * the rootReducer. This is just a way to maintain the Redux-Store across
  * Browser Refreshes and connection hiccups.
  */
-// const persistedState = loadState();
 const store = createStore(
     rootReducer,
-    // persistedState,
     compose(
         applyMiddleware(thunk),
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()   
     )
 );
-
-/**
- * Every time the store changes, this will save the account section of the store
- * to local storage. We throttle the number of saves per second because it's 
- * an expensive operation
- */
-// store.subscribe(throttle(()=> {
-//     saveState({
-//         account: store.getState().account
-//     });
-// }), 1000);
-
 
 /**
  * @param props: an object with { path, component }. 
@@ -60,6 +49,7 @@ const AuthRoute = (props) => {
     return ( <Route path={path} component={component} /> );
 }
 
+
 /**
  * Upon serving up our index.js we will want our store to check if the user 
  * has been authenticated by calling the fetchAuthenticated function which
@@ -76,19 +66,23 @@ store.dispatch(fetchAuthenticated())
     .then(() => {
         render(
             <Provider store={store}>
+                <Startup>
                 <Router history={history}> 
-                    <Fragment>
-                        <Navbar />
-                        <Container>
-                            <Switch>
-                                <Route exact path='/' component={Root} />
-                                <AuthRoute path='/doodle' component={Doodle} />
-                                <AuthRoute path='/gallery' component={DoodleList} />
-                                <AuthRoute path='/form' component={DoodleForm} />
-                            </Switch>
-                        </Container>
-                    </Fragment>
+                <Fragment>
+                    <Appbar />
+                    <Layout>
+                        <Switch>
+                            <Route exact path='/' component={Root} />
+                            <Route exact path='/admin' component={AuthForm} />
+                            <Route path='/home' component={Home} />
+                            <Route path='/gallery' component={Gallery} />
+                            <Route path='/comic/:index' component={Comic} />
+                            <AuthRoute path='/form' component={DoodleForm} />
+                        </Switch>
+                    </Layout>
+                </Fragment>
                 </Router>
+                </Startup>
             </Provider>,
             document.getElementById('root')
         );

@@ -9,11 +9,10 @@
  */
 
 import React, { Component, Fragment } from 'react';
-import { FormGroup, FormControl } from 'react-bootstrap';
-import { Button } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Button, FormGroup, FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { uploadDoodle } from '../actions/doodle';
+import { fetchPublicDoodles } from '../actions/publicDoodles';
 
 class DoodleForm extends Component {
     state = { 
@@ -33,18 +32,25 @@ class DoodleForm extends Component {
     }
 
     submitDoodle = () => {
+        console.log('submitting doodle');
         this.setState({ submitted: true })
         const { title, doodleFile } = this.state;
         this.props.uploadDoodle({ title, doodleFile });
-        this.setState({ title: '', doodleFile: null })
+    }
+
+    get Status() {
+        if(this.state.submitted && !this.props.doodle.uploading){
+            return <h6>Upload Successful</h6>
+        } else if (this.state.submitted && this.props.doodle.uploading){
+            return <h6>Upload Error</h6>
+        } else {
+            return <Fragment></Fragment>
+        }
     }
 
     render() {
         return(
             <Fragment>
-                <Link to="/">
-                    <Button>Home</Button>
-                </Link>
                 <h1>Upload Doodle</h1>
                 <FormGroup>
                     <FormControl
@@ -61,6 +67,7 @@ class DoodleForm extends Component {
                     />
                 </FormGroup>
                 <Button onClick={this.submitDoodle}>Submit</Button>
+                {this.Status}
             </Fragment>
         );
     }
@@ -69,5 +76,5 @@ class DoodleForm extends Component {
 
 export default connect(
     ({ doodle }) => ({ doodle }),
-    { uploadDoodle }
+    { uploadDoodle, fetchPublicDoodles }
 )(DoodleForm);

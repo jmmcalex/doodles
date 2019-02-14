@@ -22,7 +22,6 @@ const doodle = (state = DEFAULT_DOODLE, action) => {
         case DOODLE.UPLOAD_SUCCESS:
             return {
                 ...state,
-                ...action.doodle,
                 uploading: false,
                 message: 'doodle successfully uploaded',
             };

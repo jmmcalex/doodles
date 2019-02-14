@@ -8,7 +8,7 @@ const fetchFromAccount = ({
     SUCCESS_TYPE,
     ERROR_TYPE,
 }) => dispatch => {
-    console.log(`fetching from account/${endpoint}`);
+    // console.log(`fetching from account/${endpoint}`);
     dispatch({ type: FETCH_TYPE }); 
     return fetch(`${BACKEND.ADDRESS}/account/${endpoint}`, options)
         .then(response => response.json()) 

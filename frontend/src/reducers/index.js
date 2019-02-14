@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import account from './account';
 import doodle from './doodle';
+import publicDoodles from './publicDoodles';
 // import tags from './tags';
 // import doodlesByTags from './doodleTags';
 
@@ -11,5 +12,6 @@ import doodle from './doodle';
  */
 export default combineReducers({
     account,
-    doodle
+    doodle,
+    publicDoodles,
 });

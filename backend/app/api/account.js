@@ -14,15 +14,15 @@ const router = new Router();
  *          setting the session cookie in the http response.
  */
 router.post('/signup', (req, res, next) => {
-    console.log('signing up for account');
+    // console.log('signing up for account');
     const { username, password } = req.body;
     const usernameHash = hash(username);
     const passwordHash = hash(password);
-    console.log('checking if account exists');
+    // console.log('checking if account exists');
     AccountTable.getAccount({ usernameHash })
         .then(({ account }) => {
             if(!account){ 
-                console.log('account does not yet exist, storing new account');
+                // console.log('account does not yet exist, storing new account');
                 return AccountTable.storeAccount({ usernameHash, passwordHash })
             } else {
                 const error = new Error('This username has already been taken')
@@ -31,7 +31,7 @@ router.post('/signup', (req, res, next) => {
             }
         })
         .then(() => {
-            console.log('account now stored, setting session cookie in browser');
+            // console.log('account now stored, setting session cookie in browser');
             return setSession({ username, res });
         })
         .then(({ message }) => {
@@ -92,21 +92,21 @@ router.get('/logout', (req, res, next) => {
  * we respond by throwing an error
  */
 router.get('/authenticated', (req, res, next) => {
-    console.log('Checking if client session is set and authentic...');
+    // console.log('Checking if client session is set and authentic...');
     const { sessionString } = req.cookies;
     if (!sessionString || !Session.verify(sessionString)) {
-        console.log('invalid session');
+        // console.log('invalid session');
         const error = new Error('Invalid session');
         error.statusCode = 400;
         return next(error);
     } else {
-        console.log('Session string is valid. Authenticating against DB...');
+        // console.log('Session string is valid. Authenticating against DB...');
         const { username, id } = Session.parse(sessionString);
         const usernameHash = hash(username);
         AccountTable.getAccount({ usernameHash })
             .then(({ account }) => {
                 const authenticated = account.sessionId === id;
-                console.log('Session is authentic:', authenticated);
+                // console.log('Session is authentic:', authenticated);
                 res.json({ authenticated });
             })
             .catch(error => next(error));

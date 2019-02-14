@@ -17,28 +17,17 @@ export const uploadDoodle = ({ title, doodleFile }) => dispatch => {
     
     const config = {
         method: 'post',
-        url: `${BACKEND.ADDRESS}/doodle/new`,
+        url: `${BACKEND.ADDRESS}/doodle`,
         data: bodyData,
         // config: { headers: {'Content-Type': `multipart/form-data; boundary=${bodyData._boundary}`}}
     }
-
     return ( 
         axios(config)
-            .then(response => {
-                console.log('response from /doodle/new endpoint:', response.data);
-                dispatch({
-                    type: DOODLE.UPLOAD_SUCCESS,
-                    ...response.data
-                })
-            })
-            .catch(error => {
-                console.log('error response from /doodle/new endpoint:', error.data);
-                dispatch({
-                    type: DOODLE.UPLOAD_ERROR,
-                    error  
-                })
-            })
+        .then(response => {
+            dispatch({ type: DOODLE.UPLOAD_SUCCESS, });
+        })
+        .catch(error => {
+            dispatch({ type: DOODLE.UPLOAD_ERROR, error });
+        })
     )
-
 };
-

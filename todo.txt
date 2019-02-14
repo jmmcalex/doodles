@@ -1,0 +1,15 @@
+Todo:
+- Image Upload preview
+- Edit Screen
+- New Navbar
+- Deployment
+- Single View Pagination 
+    - Changing its view like "Poorly Drawn Lines" at a certain breakpoint
+- Linking Comics to Account
+    - Build an AccountComic table with a one-to-many relation b/w account and comic
+
+
+
+Long Term
+- Implement Tags
+- Implement Searching
