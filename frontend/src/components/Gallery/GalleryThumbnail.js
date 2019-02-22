@@ -35,7 +35,7 @@ class GalleryThumbnail extends Component {
                         src={`${BACKEND.ADDRESS}${doodle.filePath}`}
                         onClick={() => this.props.deleteDoodle(doodle.id)}
                     />
-                    <Trash />
+                    {/* <Trash /> */}
                 </TrashWrapper>
             )
         }
@@ -83,6 +83,7 @@ const TrashWrapper = styled(Wrapper)`
 
 const Thumbnail = styled.img`
     width: 100%;
+    object-fit: cover;
     cursor: pointer;
 `;
 

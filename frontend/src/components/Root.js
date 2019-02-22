@@ -7,7 +7,8 @@ import Home from './Home';
 class Root extends Component {
     render() {
         return (
-            this.props.account.loggedIn ? <Home /> : <AuthForm />
+            // this.props.account.loggedIn ? <Home /> : <AuthForm />
+            <Home />
         )
     }
 };

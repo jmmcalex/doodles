@@ -20,8 +20,8 @@ class Appbar extends Component {
         } else {
             return(
                 <NavItemsRight>
+                    <NavLink to="/home"> Home</NavLink>
                     <NavLink to="/gallery"> Gallery </NavLink>
-                    <NavLink to="/home"> About (Coming Soon)</NavLink>
                 </NavItemsRight>
             )
         }
