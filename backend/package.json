@@ -22,11 +22,12 @@
     "nodemon": "^1.18.7"
   },
   "scripts": {
-    "start": "node ./bin/server",
+    "start": "npm run heroku-config && MODE='production' node ./bin/server",
     "dev": "nodemon ./bin/server",
     "purge": "./bin/purge_images.sh",
     "configure": "./bin/configure_db.sh",
-    "configure-dev": "./bin/configure_db.sh && npm run dev"
+    "configure-dev": "./bin/configure_db.sh && npm run dev",
+    "heroku-config": "heroku config:set DB_PASSWORD=\"$(cat ./secrets/DB_PASSWORD.secret)\""
   },
   "author": "",
   "license": "ISC"

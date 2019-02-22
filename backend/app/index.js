@@ -21,8 +21,13 @@ app.use(express.static('public'))
  * 'credentials: true' finishes the agreement between backend and frontend
  * on whether to expose cookies/certificates/authHeaders to the frontend js code
  */
+const origin = process.env.MODE === 'production' ?
+    'https://danielleysdoodles.herokuapp.com' :
+    'http://localhost:1234';
+
+
 app.use(cors({
-    origin: 'http://localhost:1234',
+    origin,
     credentials: true
 }));
 
