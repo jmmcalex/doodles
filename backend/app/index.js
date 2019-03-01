@@ -22,7 +22,7 @@ app.use(express.static('public'))
  * on whether to expose cookies/certificates/authHeaders to the frontend js code
  */
 const origin = process.env.MODE === 'production' ?
-    'https://danielleysdoodles.herokuapp.com' :
+    'https://danielleysdoodles.com' :
     'http://localhost:1234';
 
 

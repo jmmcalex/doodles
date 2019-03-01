@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Button, FormGroup, FormControl } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import { signup, login } from '../actions/account';
-import fetchStates from '../reducers/fetchStates';
+import fetchStates from '../reducers/fetchstates';
 
 
 class AuthForm extends Component {
