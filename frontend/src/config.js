@@ -1,6 +1,6 @@
 let domain, protocol;
 if (process.env.MODE === 'production'){
-    domain = 'danielleysdoodles-backend.herokuapp.com';
+    domain = 'doodlesapi.danielleysdoodles.com';
     protocol = 'https';
 } else { 
     domain = 'localhost:3000';
