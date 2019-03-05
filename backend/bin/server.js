@@ -6,7 +6,7 @@
  */
 
 const app = require('../app/index.js');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 
 app.listen(port, () => {
     console.log(`Welcome to Danielleys Doodles, listening on ${port}`);

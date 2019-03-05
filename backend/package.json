@@ -22,6 +22,7 @@
     "nodemon": "^1.18.7"
   },
   "scripts": {
+    "pm2": "MODE='production' pm2 start ./bin/server.js --name 'doodles api'",
     "start": "MODE='production' node ./bin/server",
     "dev": "nodemon ./bin/server",
     "purge": "./bin/purge_images.sh",
