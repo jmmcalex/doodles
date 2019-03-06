@@ -24,7 +24,7 @@
   "scripts": {
     "pm2": "MODE='production' pm2 start ./bin/server.js --name 'doodles api'",
     "start": "MODE='production' node ./bin/server",
-    "dev": "nodemon ./bin/server",
+    "dev": "node ./bin/server",
     "purge": "./bin/purge_images.sh",
     "configure": "./bin/configure_db.sh",
     "configure-dev": "./bin/configure_db.sh && npm run dev"
