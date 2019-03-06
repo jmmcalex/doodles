@@ -42,6 +42,8 @@ router.post('/', upload.single('doodleFile'), (req, res, next) => {
     const file = req.file;
     const filePath = `${DOODLE_STATIC_PATH}/${file.filename}`;
     const doodle = new Doodle({ title, filePath });
+    console.log('filepath', filepath);
+    console.log('doodle', doodle);
 
     DoodleTable.storeDoodle(doodle)
         .then(() => {
