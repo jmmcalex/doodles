@@ -13,7 +13,7 @@ const DoodleTable = require('../doodle/table.js');
 const Doodle = require('../doodle');
 const uuid = require('uuid');
 
-const DOODLE_STORAGE  = "./public/images/doodles";
+const DOODLE_STORAGE  = "public/images/doodles";
 const DOODLE_STATIC_PATH = "/images/doodles";
 
 const storage = multer.diskStorage({
@@ -37,24 +37,23 @@ router.get('/', (req, res, next) => {
         .catch(error => next(error));
 });
 
-router.post('/', upload.single('doodleFile'), (req, res, next) => {
-    console.log('in doodle post route');
-    const  { title } = req.body; 
-    console.log('title', title);
-    const file = req.file;
-    console.log('file', file);
-    const filePath = `${DOODLE_STATIC_PATH}/${file.filename}`;
-    console.log('filepath', filePath)
-    const doodle = new Doodle({ title, filePath });
-    console.log('filepath', filePath);
-    console.log('doodle', doodle);
+router.post('/upload', upload.single('doodleFile'), (req, res, next) => {
+    if (req.file) {
+        const  { title } = req.body; 
+        const file = req.file;
+        const filePath = `${DOODLE_STATIC_PATH}/${file.filename}`;
+        const doodle = new Doodle({ title, filePath });
 
-    DoodleTable.storeDoodle(doodle)
-        .then(() => {
-            console.log('doodle successfully stored');
-            res.json({ doodle });
-        }) 
-        .catch(error => next(error));
+        console.log('storing doodle to the database');
+        DoodleTable.storeDoodle(doodle)
+            .then(() => {
+                console.log('doodle successfully stored');
+                res.json({ doodle });
+            }) 
+            .catch(error => next(error));
+    } else {
+        res.status("409").json("No files to upload");
+    }
 });
 
 router.delete('/:id', (req, res, next) => {
