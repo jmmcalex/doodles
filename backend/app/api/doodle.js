@@ -32,18 +32,21 @@ const router = new Router();
 router.get('/', (req, res, next) => {
     DoodleTable.getAllDoodles()
         .then(doodles => {
-            console.log('Retrieving doodles:', doodles);
             res.json( doodles );
         })
         .catch(error => next(error));
 });
 
 router.post('/', upload.single('doodleFile'), (req, res, next) => {
+    console.log('in doodle post route');
     const  { title } = req.body; 
+    console.log('title', title);
     const file = req.file;
+    console.log('file', file);
     const filePath = `${DOODLE_STATIC_PATH}/${file.filename}`;
+    console.log('filepath', filePath)
     const doodle = new Doodle({ title, filePath });
-    console.log('filepath', filepath);
+    console.log('filepath', filePath);
     console.log('doodle', doodle);
 
     DoodleTable.storeDoodle(doodle)

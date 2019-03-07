@@ -8,6 +8,7 @@ class DoodleTable {
     static storeDoodle(doodle) {
         return new Promise((resolve, reject) => {
             const { postDate, title, filePath } = doodle;
+            console.log('storing doodle');
             pool.query(
                 `INSERT INTO doodle("postDate", title, "filePath")
                 VALUES($1, $2, $3)`,
@@ -32,7 +33,7 @@ class DoodleTable {
                  [],
                  (error, result) => {
                      if (error) return reject(error);
-                     console.log(result.rows)
+                    //  console.log(result.rows)
                      resolve(result.rows);
                  }
             )
