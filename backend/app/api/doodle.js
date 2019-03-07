@@ -32,6 +32,7 @@ const router = new Router();
 router.get('/', (req, res, next) => {
     DoodleTable.getAllDoodles()
         .then(doodles => {
+            console.log('Retrieving doodles:', doodles);
             res.json( doodles );
         })
         .catch(error => next(error));
