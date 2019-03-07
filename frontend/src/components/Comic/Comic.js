@@ -32,6 +32,7 @@ const Image = styled.img`
 class Comic extends Component{ 
     render() {
         const { index } = this.props.match.params;
+        console.log('index', index);
         if (index < 0 || index > this.props.publicDoodles.endIndex){
             return(
                 <Redirect to="/"/>

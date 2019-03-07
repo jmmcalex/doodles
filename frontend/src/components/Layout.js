@@ -8,7 +8,8 @@ const Layout = (props) => (
 );
 
 const Main = styled.div`
-    margin-top: 60px;
+    margin-top: 70px;
+    margin-bottom: 80px;
 `;
 
 export default Layout;

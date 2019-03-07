@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf dist .cache",
     "start": "MODE='production' npm run build && node server",
-    "dev": "npm run clean && parcel src/index.html",
-    "build": "parcel src/index.html"
+    "dev": "npm run clean && parcel public/index.html",
+    "build": "MODE='production' parcel build public/index.html"
   },
   "author": "",
   "license": "ISC",

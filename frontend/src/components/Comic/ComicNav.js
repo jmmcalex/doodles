@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { FaAngleDoubleLeft, FaAngleDoubleRight, FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import styled from 'styled-components';
 import Breakpoint from 'react-socks';
+import old_image from './old_image.png';
+import new_image from './new_image.png'
 
 class ComicNav extends Component {  
 
@@ -15,7 +17,7 @@ class ComicNav extends Component {
             return (
                 <Fragment>
                     <StyledLink to={`/comic/${parseInt(currentIndex) - 1}`}>
-                        <NextArrow />
+                        <Image src={new_image} alt="next baby" />
                     </StyledLink>
                     <StyledLink to={`/comic/${newestIndex}`}>
                         <NewestArrow />
@@ -43,7 +45,7 @@ class ComicNav extends Component {
                         <OldestArrow />
                     </StyledLink>
                     <StyledLink to={`/comic/${parseInt(currentIndex) + 1}`}>
-                        <PrevArrow />
+                        <Image src={old_image} alt="old man" />
                     </StyledLink>
                 </Fragment>
             )
@@ -113,6 +115,7 @@ const NextArrow = styled(FaAngleRight)`
     font-size: 2em;
 `;
 
+
 const NewestArrow = styled(FaAngleDoubleRight)`
     font-size: 2em;
 `;
@@ -130,6 +133,9 @@ const Title = styled.p`
     font-family: 'Indie Flower', cursive;
 `;
 
+const Image = styled.img`
+    max-height: 60px;
+`;
 
 
 

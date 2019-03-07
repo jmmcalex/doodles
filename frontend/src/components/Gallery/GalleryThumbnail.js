@@ -65,6 +65,9 @@ const Wrapper = styled.div`
     border: 3px solid black;
     box-shadow: 4px 4px 4px #fbc2a9; 
     background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
     border-radius: 2%;
     transition: transform .8s ease-in-out;
@@ -83,6 +86,7 @@ const TrashWrapper = styled(Wrapper)`
 
 const Thumbnail = styled.img`
     width: 100%;
+    height: 100%;
     object-fit: cover;
     cursor: pointer;
 `;

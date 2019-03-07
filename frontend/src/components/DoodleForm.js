@@ -13,6 +13,7 @@ import { Button, FormGroup, FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { uploadDoodle } from '../actions/doodle';
 import { fetchPublicDoodles } from '../actions/publicDoodles';
+import styled from 'styled-components';
 
 class DoodleForm extends Component {
     state = { 
@@ -50,7 +51,7 @@ class DoodleForm extends Component {
 
     render() {
         return(
-            <Fragment>
+            <Layout>
                 <h1>Upload Doodle</h1>
                 <FormGroup>
                     <FormControl
@@ -68,10 +69,19 @@ class DoodleForm extends Component {
                 </FormGroup>
                 <Button onClick={this.submitDoodle}>Submit</Button>
                 {this.Status}
-            </Fragment>
+            </Layout>
         );
     }
 }
+
+const Layout = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 3em;
+    margin-right: 3em;
+`
 
 
 export default connect(

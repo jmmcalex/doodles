@@ -4,6 +4,7 @@ import { Button, FormGroup, FormControl } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import { signup, login } from '../actions/account';
 import fetchStates from '../reducers/fetchstates';
+import styled from 'styled-components';
 
 
 class AuthForm extends Component {
@@ -56,8 +57,8 @@ class AuthForm extends Component {
         }
 
         return(
-            <Fragment>
-                <h1>AuthForm</h1>
+            <Layout>
+                <h1>Login Here! This is for Danielle only :)</h1>
                 <FormGroup>
                     <FormControl 
                         type='text'
@@ -76,15 +77,25 @@ class AuthForm extends Component {
                 </FormGroup>
                 <div>
                    <Button onClick={this.login}>Login</Button>
-                   <span> or </span>
-                   <Button onClick={this.signup}>Sign Up</Button>
+                    {/* <span> or </span>
+                   <Button onClick={this.signup}>Sign Up</Button> */}
                 </div>
                 <br />
                 { this.Error }
-            </Fragment>
+            </Layout>
         )
     }
 };
+
+const Layout = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 3em;
+    margin-right: 3em;
+`;
+
 
 
 export default connect(

@@ -13,13 +13,13 @@ const DoodleTable = require('../doodle/table.js');
 const Doodle = require('../doodle');
 const uuid = require('uuid');
 
-const DOODLE_STORAGE  = "public/images/doodles";
-const DOODLE_STATIC_PATH = "/images/doodles";
+const DOODLE_STORAGE_PATH  = "public/images/doodles";
+const DOODLE_RETRIEVAL_PATH = "/images/doodles";
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        fs.mkdirsSync(DOODLE_STORAGE);
-        cb(null, DOODLE_STORAGE);
+        fs.mkdirsSync(DOODLE_STORAGE_PATH);
+        cb(null, DOODLE_STORAGE_PATH);
     },
     filename: (req, file, cb) => {
         cb(null, `${uuid()}-${Date.now()}.png`);
@@ -42,7 +42,7 @@ router.post('/upload', upload.single('doodleFile'), (req, res) => {
     if (req.file) {
         const  { title } = req.body; 
         const file = req.file;
-        const filePath = `${DOODLE_STATIC_PATH}/${file.filename}`;
+        const filePath = `${DOODLE_RETRIEVAL_PATH}/${file.filename}`;
         const doodle = new Doodle({ title, filePath });
 
         console.log('storing doodle to the database');
