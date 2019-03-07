@@ -38,6 +38,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/upload', upload.single('doodleFile'), (req, res, next) => {
+    console.log('reached upload endpoint')
     if (req.file) {
         const  { title } = req.body; 
         const file = req.file;
