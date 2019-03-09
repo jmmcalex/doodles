@@ -65,14 +65,16 @@ class ComicNav extends Component {
                 <Breakpoint small down>
                     <SmallLayout>
                         {this.backButtons}
-                        <Title>{this.props.title}</Title>
+                        {/* <Title>{this.props.title}</Title> */}
+                        <div></div>
                         {this.fwdButtons}
                     </SmallLayout>
                 </Breakpoint>
                 <Breakpoint medium up>
                     <MediumLayout>
                         {this.backButtons}
-                        <Title>{this.props.title}</Title>
+                        {/* <Title>{this.props.title}</Title> */}
+                        <div></div>
                         {this.fwdButtons}
                     </MediumLayout>
                 </Breakpoint>
@@ -136,8 +138,6 @@ const Title = styled.p`
 const Image = styled.img`
     max-height: 60px;
 `;
-
-
 
 export default connect(
     ({ publicDoodles }) => ({ publicDoodles }),

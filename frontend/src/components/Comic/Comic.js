@@ -7,9 +7,9 @@ import { setCurrentIndex } from '../../actions/publicDoodles';
 import ComicNav from './ComicNav';
 
 const Main = styled.div`
-    min-height: 100vh;
+    /* min-height: 100vh; */
     display: grid;
-    grid-template-columns: minmax(30px, 1fr) minmax(200px, 500px) minmax(30px, 1fr);
+    grid-template-columns: minmax(15px, 1fr) minmax(200px, 550px) minmax(15px, 1fr);
     grid-template-areas: ". main ." ;
 `;
 
@@ -27,9 +27,18 @@ const Image = styled.img`
     border-radius: 2%;
 `;
 
+const H1 = styled.h1`
+    font-family: 'Indie Flower', cursive;
+`
+
 
 
 class Comic extends Component{ 
+
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
+
     render() {
         const { index } = this.props.match.params;
         console.log('index', index);
@@ -43,6 +52,7 @@ class Comic extends Component{
             <Main>
             {
                 <ComicDisplay>
+                    <H1>{title}</H1>
                     <Image src={`${BACKEND.ADDRESS}${filePath}`}/>
                     <ComicNav index={index} title={title}/>
                 </ComicDisplay>

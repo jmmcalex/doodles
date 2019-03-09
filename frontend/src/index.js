@@ -72,7 +72,7 @@ store.dispatch(fetchAuthenticated())
                     <Appbar />
                     <Layout>
                         <Switch>
-                            <Route exact path='/' component={Root} />
+                            <Route exact path='/' component={Home} />
                             <Route exact path='/admin' component={AuthForm} />
                             <Route path='/home' component={Home} />
                             <Route path='/gallery' component={Gallery} />
