@@ -13,32 +13,32 @@ const router = new Router();
  *          It returns an error if a username is already taken or if there is a problem 
  *          setting the session cookie in the http response.
  */
-router.post('/signup', (req, res, next) => {
-    // console.log('signing up for account');
-    const { username, password } = req.body;
-    const usernameHash = hash(username);
-    const passwordHash = hash(password);
-    // console.log('checking if account exists');
-    AccountTable.getAccount({ usernameHash })
-        .then(({ account }) => {
-            if(!account){ 
-                // console.log('account does not yet exist, storing new account');
-                return AccountTable.storeAccount({ usernameHash, passwordHash })
-            } else {
-                const error = new Error('This username has already been taken')
-                error.statusCode = 409;
-                throw error;
-            }
-        })
-        .then(() => {
-            // console.log('account now stored, setting session cookie in browser');
-            return setSession({ username, res });
-        })
-        .then(({ message }) => {
-            res.json({ message });
-        })
-        .catch(error => next(error));
-})
+// router.post('/signup', (req, res, next) => {
+//     // console.log('signing up for account');
+//     const { username, password } = req.body;
+//     const usernameHash = hash(username);
+//     const passwordHash = hash(password);
+//     // console.log('checking if account exists');
+//     AccountTable.getAccount({ usernameHash })
+//         .then(({ account }) => {
+//             if(!account){ 
+//                 // console.log('account does not yet exist, storing new account');
+//                 return AccountTable.storeAccount({ usernameHash, passwordHash })
+//             } else {
+//                 const error = new Error('This username has already been taken')
+//                 error.statusCode = 409;
+//                 throw error;
+//             }
+//         })
+//         .then(() => {
+//             // console.log('account now stored, setting session cookie in browser');
+//             return setSession({ username, res });
+//         })
+//         .then(({ message }) => {
+//             res.json({ message });
+//         })
+//         .catch(error => next(error));
+// })
 
 
 

@@ -34,7 +34,7 @@ class Home extends Component {
             <Layout>
                 <H1>Welcome To Danielley's Doodles!</H1>
                 <H3>A collection of comics and art by Danielle</H3>
-                <Carousel 
+                <StyledCarousel 
                     showThumbs={false}
                     showStatus={false}
                     showIndicators={true}
@@ -45,12 +45,16 @@ class Home extends Component {
                     <Image src={slideImages[0]} />               
                     <Image src={slideImages[1]} />               
                     <Image src={slideImages[2]} />                           
-                </Carousel>
+                </StyledCarousel>
                 <H4>Recent comics</H4>
             </Layout>
         )
     }
 }
+
+const StyledCarousel = styled(Carousel)`
+    cursor: pointer;
+`
 
 const H1 = styled.h1`
     font-family: 'Indie Flower', cursive;
